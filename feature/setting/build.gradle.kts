@@ -24,6 +24,7 @@ android {
 
 dependencies {
     implementation(project(":navigation"))
+    implementation(project(":common-ui"))
 
     implementation(libs.bundles.androidx.ui.foundation)
     implementation(libs.bundles.android.basic.ui)

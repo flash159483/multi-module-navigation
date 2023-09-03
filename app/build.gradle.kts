@@ -1,6 +1,7 @@
 plugins {
     kotlin("android")
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("kapt")
 }
 
@@ -29,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":common-ui"))
     implementation(project(":navigation"))
     implementation(project(":feature:home"))
     implementation(project(":feature:setting"))
@@ -37,4 +39,6 @@ dependencies {
     implementation(libs.bundles.android.basic.ui)
     implementation(libs.bundles.basic.test)
     implementation(libs.bundles.navigation)
+    implementation(libs.hilt)
+    kapt(libs.hilt.kapt)
 }
