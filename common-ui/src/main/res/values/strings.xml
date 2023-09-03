@@ -1,0 +1,5 @@
+<resources>
+    <string name="hint">전송할 데이터를 입력하세요</string>
+    <string name="send">전송</string>
+    <string name="result">결과</string>
+</resources>
