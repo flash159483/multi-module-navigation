@@ -21,6 +21,9 @@ class MainActivity @Inject constructor() : AppCompatActivity(), ToFlowNavigatabl
     @Inject
     lateinit var navigator: Navigator
 
+    // DI 안 쓰려면
+    // private val navigator = Navigator() 을 사용 하면 됩니다.
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
