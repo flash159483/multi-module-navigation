@@ -12,14 +12,16 @@
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:destination="@id/home_flow"
-        app:popUpTo="@navigation/nav_graph"/>
+        app:popUpToInclusive="false"
+        app:popUpTo="@id/nav_graph"/>
 
     <action
         android:id="@+id/action_global_setting_flow"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:destination="@id/setting_flow"
-        app:popUpTo="@navigation/nav_graph">
+        app:popUpToInclusive="false"
+        app:popUpTo="@id/nav_graph">
         <argument
             android:name="data"
             app:argType="string"/>
