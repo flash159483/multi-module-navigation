@@ -1,4 +1,4 @@
-package com.lighthouse.multi_module_navigation
+package com.lighthouse.multi_module_navigation.di
 
 import com.lighthouse.navigation.Navigator
 import dagger.Module
