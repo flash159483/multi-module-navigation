@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
     implementation(project(":common-ui"))
     implementation(project(":navigation"))
     implementation(project(":feature:home"))
@@ -41,4 +42,7 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.hilt)
     kapt(libs.hilt.kapt)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.okhttp)
+    implementation(libs.bundles.gson)
 }

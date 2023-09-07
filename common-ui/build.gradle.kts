@@ -25,6 +25,7 @@ android {
 
 dependencies {
     implementation(project(":navigation"))
+    api(project(":domain"))
 
     implementation(libs.bundles.androidx.ui.foundation)
     implementation(libs.constraintlayout)

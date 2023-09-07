@@ -2,6 +2,7 @@ plugins {
     kotlin("android")
     id("com.android.library")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -31,4 +32,7 @@ dependencies {
     implementation(libs.kotlin.coroutines)
     implementation(libs.bundles.basic.test)
     implementation(libs.bundles.navigation)
+    implementation(libs.swipe.refresh)
+    implementation(libs.hilt)
+    kapt(libs.hilt.kapt)
 }
