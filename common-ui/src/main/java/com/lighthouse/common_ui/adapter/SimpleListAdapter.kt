@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lighthouse.common_ui.databinding.ListTileBinding
-import com.lighthouse.domain.VO.QuestionVO
+import com.lighthouse.domain.vo.QuestionVO
 
 class SimpleListAdapter(
     private val listener: ClickListener,

@@ -3,7 +3,8 @@ package com.lighthouse.home.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lighthouse.common_ui.util.UiState
-import com.lighthouse.domain.usecase.QuestionUseCase
+import com.lighthouse.domain.usecase.GetQuestionContentUseCase
+import com.lighthouse.domain.usecase.GetQuestionListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,14 +15,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val useCase: QuestionUseCase,
+    private val listUseCase: GetQuestionListUseCase,
+    private val contentUseCase: GetQuestionContentUseCase,
 ) : ViewModel() {
     private val _result = MutableStateFlow<UiState>(UiState.Loading)
     val result: StateFlow<UiState> = _result.asStateFlow()
 
     fun getQuestionList(pageSize: Int?) {
         viewModelScope.launch {
-            useCase.getQuestionList(pageSize)
+            listUseCase.invoke(pageSize)
                 .catch {
                     _result.emit(UiState.Error(it.message ?: "Error"))
                 }
@@ -40,7 +42,7 @@ class HomeViewModel @Inject constructor(
 
     fun getQuestionContent(questionId: String?) {
         viewModelScope.launch {
-            useCase.getQuestionContent(questionId)
+            contentUseCase.invoke(questionId)
                 .catch {
                     _result.emit(UiState.Error(it.message ?: "Error"))
                 }

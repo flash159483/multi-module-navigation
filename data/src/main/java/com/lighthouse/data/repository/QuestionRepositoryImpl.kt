@@ -2,9 +2,9 @@ package com.lighthouse.data.repository
 
 import android.util.Log
 import com.lighthouse.data.remote.datasource.QuestionDataSource
-import com.lighthouse.domain.VO.QuestionContentVO
-import com.lighthouse.domain.VO.QuestionListVO
 import com.lighthouse.domain.repository.QuestionRepository
+import com.lighthouse.domain.vo.QuestionContentVO
+import com.lighthouse.domain.vo.QuestionListVO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

@@ -1,7 +1,7 @@
 package com.lighthouse.data.dto
 
 import com.google.gson.annotations.SerializedName
-import com.lighthouse.domain.VO.QuestionVO
+import com.lighthouse.domain.vo.QuestionVO
 
 data class QuestionDTO(
     @SerializedName("title")

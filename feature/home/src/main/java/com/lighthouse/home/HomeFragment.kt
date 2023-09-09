@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.lighthouse.common_ui.adapter.SimpleListAdapter
 import com.lighthouse.common_ui.util.UiState
-import com.lighthouse.domain.VO.QuestionListVO
+import com.lighthouse.domain.vo.QuestionListVO
 import com.lighthouse.home.databinding.FragmentHomeBinding
 import com.lighthouse.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint

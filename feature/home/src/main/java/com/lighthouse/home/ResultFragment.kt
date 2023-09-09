@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.lighthouse.common_ui.util.UiState
-import com.lighthouse.domain.VO.QuestionContentVO
+import com.lighthouse.domain.vo.QuestionContentVO
 import com.lighthouse.home.databinding.FragmentResultBinding
 import com.lighthouse.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,7 +1,7 @@
 package com.lighthouse.data.dto
 
 import com.google.gson.annotations.SerializedName
-import com.lighthouse.domain.VO.QuestionContentVO
+import com.lighthouse.domain.vo.QuestionContentVO
 
 data class QuestionContentDTO(
     @SerializedName("title") val
@@ -9,7 +9,7 @@ data class QuestionContentDTO(
     @SerializedName("question_id")
     val id: String?,
     @SerializedName("body")
-    val body: String?
+    val body: String?,
 ) {
     fun toVO() = QuestionContentVO(
         title = title ?: "",

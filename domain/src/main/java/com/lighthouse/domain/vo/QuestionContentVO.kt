@@ -1,4 +1,4 @@
-package com.lighthouse.domain.VO
+package com.lighthouse.domain.vo
 
 data class QuestionContentVO(
     val title: String,

@@ -1,7 +1,7 @@
 package com.lighthouse.domain.repository
 
-import com.lighthouse.domain.VO.QuestionContentVO
-import com.lighthouse.domain.VO.QuestionListVO
+import com.lighthouse.domain.vo.QuestionContentVO
+import com.lighthouse.domain.vo.QuestionListVO
 import kotlinx.coroutines.flow.Flow
 
 interface QuestionRepository {
