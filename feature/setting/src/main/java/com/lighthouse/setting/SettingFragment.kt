@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.Scope
 import com.lighthouse.setting.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
@@ -77,6 +78,7 @@ class SettingFragment : Fragment() {
     private fun getGoogleClient(): GoogleSignInClient {
         val googleSignInOptions =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestScopes(Scope("https://www.googleapis.com/auth/userinfo.email"))
                 .requestEmail()
                 .requestId()
                 .requestProfile()
