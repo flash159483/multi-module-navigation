@@ -1,21 +1,32 @@
 package com.lighthouse.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.lighthouse.navigation.NavigationFlow
-import com.lighthouse.navigation.ToFlowNavigatable
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.lighthouse.setting.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
-    private val args: SettingFragmentArgs by navArgs()
+    private val googleSignInClient: GoogleSignInClient by lazy { getGoogleClient() }
+
+    private val resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            getResult.value = result.data
+
+        }
+
+    private val getResult = MutableLiveData<Intent?>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,22 +39,51 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(args.data != "") {
-            binding.tvResult.text = args.data
-        }
 
-        binding.btnToHome.setOnClickListener {
-            (requireActivity() as ToFlowNavigatable).navigateToFlow(NavigationFlow.HomeFlow)
-        }
+        signInListener()
+        observeSignInResult()
+    }
 
-        val result = args.msgs.split(" ")
-        if(result.size > 1) {
-            Log.d("TESTING", result.toString())
-            binding.btnBack.visibility = View.VISIBLE
-            binding.btnBack.setOnClickListener {
-                findNavController().popBackStack()
+    private fun observeSignInResult() {
+        getResult.observe(viewLifecycleOwner) {
+            if (it == null) return@observe
+            val task = GoogleSignIn.getSignedInAccountFromIntent(it)
+            try {
+                val account = task.getResult(ApiException::class.java)
+
+                val email = account.email ?: ""
+                getResult.value = null
+                binding.tvEmail.text = email
+
+                Log.d("TESTING", "${account.familyName}, ${account.givenName}, ${account.photoUrl}")
+            } catch (e: ApiException) {
+                Log.d("TESTING", e.stackTraceToString())
             }
         }
+    }
+
+    private fun signInListener() {
+        binding.btnSignIn.setOnClickListener {
+            requestGoogleLogin()
+        }
+    }
+
+    private fun requestGoogleLogin() {
+        googleSignInClient.signOut()
+        val signInClient = googleSignInClient.signInIntent
+        resultLauncher.launch(signInClient)
+    }
+
+    private fun getGoogleClient(): GoogleSignInClient {
+        val googleSignInOptions =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestId()
+                .requestProfile()
+                .requestIdToken(getString(com.lighthouse.common_ui.R.string.client_id))
+                .build()
+
+        return GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
     }
 
 }

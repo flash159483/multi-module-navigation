@@ -8,33 +8,24 @@
         android:layout_height="match_parent"
         tools:context=".SettingFragment">
 
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
         <TextView
-            android:id="@+id/tv_result"
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/result"
+            android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_to_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/to_home"
-            app:layout_constraintTop_toBottomOf="@id/tv_result"
-            app:layout_constraintStart_toStartOf="@id/tv_result"
-            app:layout_constraintEnd_toEndOf="@id/tv_result"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_back"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_to_home"/>
+            app:layout_constraintBottom_toTopOf="@id/btn_sign_in" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

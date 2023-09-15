@@ -31,4 +31,5 @@ dependencies {
     implementation(libs.kotlin.coroutines)
     implementation(libs.bundles.basic.test)
     implementation(libs.bundles.navigation)
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 }
