@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":navigation"))
     api(project(":domain"))
 
+    implementation(libs.google.admob)
     implementation(libs.bundles.androidx.ui.foundation)
     implementation(libs.constraintlayout)
     implementation(libs.material)

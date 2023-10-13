@@ -10,16 +10,16 @@
         <argument
             android:defaultValue=""
             android:name="data"
-            app:argType="string"/>
+            app:argType="string" />
 
         <argument
             android:defaultValue=""
             android:name="msgs"
-            app:argType="string"/>
+            app:argType="string" />
 
         <deepLink
             android:id="@+id/setting_deep_link"
-            app:uri="example://dashboard/exampleArgs?msgs={msgs}"/>
+            app:uri="example://dashboard" />
     </fragment>
 
 </navigation>

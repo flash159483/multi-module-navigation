@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.lighthouse.common_ui.adapter.SimpleListAdapter
 import com.lighthouse.common_ui.util.UiState
 import com.lighthouse.domain.vo.QuestionListVO
+import com.lighthouse.domain.vo.QuestionVO
 import com.lighthouse.home.databinding.FragmentHomeBinding
 import com.lighthouse.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -74,7 +75,10 @@ class HomeFragment : Fragment(), SimpleListAdapter.ClickListener {
             is UiState.Success<*> -> {
                 binding.rvHome.visibility = View.VISIBLE
                 val response = uiState.data as QuestionListVO
-                adapter.questionList = response.questions
+                val result = response.questions.toMutableList()
+                result.add(1, QuestionVO())
+                result.add(4, QuestionVO())
+                adapter.questionList = result
                 adapter.notifyDataSetChanged()
                 binding.pbHome.visibility = View.GONE
             }

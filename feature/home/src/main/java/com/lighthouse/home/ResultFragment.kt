@@ -11,11 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lighthouse.common_ui.util.UiState
 import com.lighthouse.domain.vo.QuestionContentVO
 import com.lighthouse.home.databinding.FragmentResultBinding
 import com.lighthouse.home.viewmodel.HomeViewModel
+import com.lighthouse.navigation.DeepLinkDestination
+import com.lighthouse.navigation.deepLinkNavigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -36,6 +39,7 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getQuestionContent(args.questionId)
+        initSetting()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -43,6 +47,12 @@ class ResultFragment : Fragment() {
                     render(it)
                 }
             }
+        }
+    }
+
+    private fun initSetting() {
+        binding.toSetting.setOnClickListener {
+            findNavController().deepLinkNavigateTo(DeepLinkDestination.Setting, true)
         }
     }
 

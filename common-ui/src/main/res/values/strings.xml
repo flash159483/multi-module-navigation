@@ -6,4 +6,5 @@
     <string name="to_home">홈으로</string>
 
     <string name="client_id">여기에 웹 클라이언트 ID 입력</string>
+    <string name="ad_attribution">Ad</string>
 </resources>

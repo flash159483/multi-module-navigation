@@ -36,6 +36,8 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:setting"))
 
+    implementation(libs.google.admob)
+
     implementation(libs.bundles.androidx.ui.foundation)
     implementation(libs.bundles.android.basic.ui)
     implementation(libs.bundles.basic.test)

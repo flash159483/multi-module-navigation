@@ -55,6 +55,8 @@ gson-converter = "2.9.0"
 
 swipe = "1.1.0"
 
+admob = "22.4.0"
+
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "gradleplugin" }
@@ -100,6 +102,8 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "gson-converter" }
 
 swipe-refresh = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swipe" }
+
+google-admob = { module = "com.google.android.gms:play-services-ads", version.ref = "admob" }
 
 [bundles]
 
