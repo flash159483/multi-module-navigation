@@ -1,5 +1,6 @@
 package com.lighthouse.home.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lighthouse.common_ui.util.UiState
@@ -25,7 +26,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             listUseCase.invoke(pageSize)
                 .catch {
-                    _result.emit(UiState.Error(it.message ?: "Error"))
+                    Log.e("TESTING", it.stackTraceToString())
                 }
                 .collect { questions ->
                     questions.fold(
@@ -33,7 +34,7 @@ class HomeViewModel @Inject constructor(
                             _result.emit(UiState.Success(it))
                         },
                         onFailure = {
-                            _result.emit(UiState.Error(it.message ?: "error"))
+                            Log.d("TESTING", it.stackTraceToString())
                         }
                     )
                 }
@@ -52,7 +53,7 @@ class HomeViewModel @Inject constructor(
                             _result.emit(UiState.Success(it))
                         },
                         onFailure = {
-                            _result.emit(UiState.Error(it.message ?: "error"))
+                            _result.emit(UiState.Error(it.stackTraceToString()))
                         }
                     )
 

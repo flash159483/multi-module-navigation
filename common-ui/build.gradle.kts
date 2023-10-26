@@ -9,12 +9,11 @@ android {
     namespace = "com.lighthouse.common_ui"
 
     buildTypes {
+        debug {
+            consumerProguardFile("proguard-rules.pro")
+        }
         release {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            consumerProguardFile("proguard-rules.pro")
         }
     }
     buildFeatures {
