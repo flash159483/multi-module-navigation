@@ -1,6 +1,8 @@
 package com.lighthouse.multi_module_navigation.di
 
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.lighthouse.data.api.StackOverFlowAPI
+import com.lighthouse.multi_module_navigation.RemoteConfigInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +19,9 @@ import javax.inject.Singleton
 object NetModule {
     @Provides
     @Singleton
-    fun provideStackOverFlowClient(): OkHttpClient =
+    fun provideStackOverFlowClient(
+        remoteConfigInterceptor: RemoteConfigInterceptor
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
@@ -25,13 +29,17 @@ object NetModule {
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
+            .addInterceptor(remoteConfigInterceptor)
             .build()
 
     @Provides
     @Singleton
-    fun provideStackOverFlowRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideStackOverFlowRetrofit(
+        okHttpClient: OkHttpClient,
+        remoteConfig: FirebaseRemoteConfig
+    ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(com.lighthouse.domain.constant.Constants.BASE_URL)
+            .baseUrl(remoteConfig.getString("BASE_URL"))
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -41,5 +49,11 @@ object NetModule {
     @Singleton
     fun provideStackOverFlowAPI(retrofit: Retrofit): StackOverFlowAPI {
         return retrofit.create(StackOverFlowAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteInterceptor(remoteConfig: FirebaseRemoteConfig): RemoteConfigInterceptor {
+        return RemoteConfigInterceptor(remoteConfig)
     }
 }

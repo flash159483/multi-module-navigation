@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
     <entry>
-        <key>MIN_VER</key>
-        <value>2.0.0</value>
+        <key>BASE_URL</key>
+        <value>https://api</value>
     </entry>
 </defaultsMap>

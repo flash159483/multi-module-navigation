@@ -8,11 +8,14 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class QuestionDataSourceImpl @Inject constructor(
-    private val api: StackOverFlowAPI,
+    private val service: StackOverFlowAPI,
 ) : QuestionDataSource {
-    override suspend fun getQuestionList(pageSize: Int?): Response<QuestionListDTO> =
-        api.lastActiveQuestions(pageSize)
+    override suspend fun getQuestionList(pageSize: Int?, api: String): Response<QuestionListDTO> =
+        service.lastActiveQuestions(pageSize, api)
 
-    override suspend fun getQuestionContent(questionId: String?): Response<QuestionBodyDTO> =
-        api.questionDetails(questionId)
+    override suspend fun getQuestionContent(
+        questionId: String?,
+        api: String
+    ): Response<QuestionBodyDTO> =
+        service.questionDetails(questionId, api)
 }

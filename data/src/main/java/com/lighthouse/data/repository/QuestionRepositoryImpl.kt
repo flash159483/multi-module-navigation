@@ -17,7 +17,8 @@ class QuestionRepositoryImpl @Inject constructor(
     private val remoteConfig: FirebaseRemoteConfig
 ) : QuestionRepository {
     override fun getQuestionList(pageSize: Int?): Flow<Result<QuestionListVO>> = flow {
-        val response = dataSource.getQuestionList(pageSize)
+        val response =
+            dataSource.getQuestionList(pageSize, remoteConfig.getString("STACKOVERFLOW_API_KEY"))
         if (response.isSuccessful) {
             emit(Result.success(response.body()!!.toVO()))
         } else {
@@ -26,7 +27,10 @@ class QuestionRepositoryImpl @Inject constructor(
     }
 
     override fun getQuestionContent(questionId: String?): Flow<Result<QuestionContentVO>> = flow {
-        val response = dataSource.getQuestionContent(questionId)
+        val response = dataSource.getQuestionContent(
+            questionId,
+            remoteConfig.getString("STACKOVERFLOW_API_KEY")
+        )
         Log.d("TESTING", response.body().toString())
         if (response.isSuccessful) {
             emit(Result.success(response.body()!!.toVO()))
