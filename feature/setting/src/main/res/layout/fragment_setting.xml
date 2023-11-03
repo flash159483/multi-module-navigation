@@ -15,10 +15,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/tv_email"
+            android:id="@+id/tv_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="32sp"

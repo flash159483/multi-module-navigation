@@ -15,9 +15,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.lighthouse.setting.databinding.FragmentSettingBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SettingFragment : Fragment() {
+    @Inject
+    lateinit var remoteConfig: FirebaseRemoteConfig
+
     private lateinit var binding: FragmentSettingBinding
     private val googleSignInClient: GoogleSignInClient by lazy { getGoogleClient() }
 
@@ -34,7 +41,7 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentSettingBinding.inflate(inflater, container, false)
-
+        binding.tvVersion.text = remoteConfig.getString("MIN_VER")
         return binding.root
     }
 
@@ -54,7 +61,6 @@ class SettingFragment : Fragment() {
 
                 val email = account.email ?: ""
                 getResult.value = null
-                binding.tvEmail.text = email
 
                 Log.d("TESTING", "${account.familyName}, ${account.givenName}, ${account.photoUrl}")
             } catch (e: ApiException) {

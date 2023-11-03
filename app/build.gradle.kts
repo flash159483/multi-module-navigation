@@ -3,6 +3,7 @@ plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -16,7 +17,7 @@ android {
 
     buildTypes {
         debug {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -54,4 +55,8 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.gson)
+
+    implementation("com.google.firebase:firebase-config-ktx:21.5.0")
+    implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")
+    implementation(libs.splash.screen)
 }

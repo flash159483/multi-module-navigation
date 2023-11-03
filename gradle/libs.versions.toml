@@ -1,8 +1,8 @@
 [versions]
 # Versions
-compileSdk = "33"
+compileSdk = "34"
 minSdk = "26"
-targetSdk = "33"
+targetSdk = "34"
 appVersion = "1.0.0"
 versionCode = "100"
 
@@ -56,6 +56,8 @@ gson-converter = "2.9.0"
 swipe = "1.1.0"
 
 admob = "22.4.0"
+splash = "1.1.0-alpha02"
+google-services = "4.3.15"
 
 
 [libraries]
@@ -103,7 +105,9 @@ gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref
 
 swipe-refresh = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swipe" }
 
+splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
 google-admob = { module = "com.google.android.gms:play-services-ads", version.ref = "admob" }
+google-services = { module = "com.google.gms:google-services", version.ref = "google-services" }
 
 [bundles]
 
@@ -118,7 +122,6 @@ retrofit = ["retrofit", "retrofit-kotlin-serialization-converter"]
 gson = ["gson", "gson-converter"]
 
 [plugins]
-
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }
 android-library = { id = "com.android.library", version.ref = "gradleplugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -128,4 +131,4 @@ dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hil
 ksp = { id = "com.google.devtools.ksp", version.ref = "kspplugin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 safe-args = { id = "androidx.navigation.safeargs", version.ref = "safe-args" }
-
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
