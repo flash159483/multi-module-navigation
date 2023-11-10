@@ -5,5 +5,5 @@ sealed class UiState {
 
     data class Success<R : Any>(val data: R) : UiState()
 
-    data class Error(val message: String) : UiState()
+    data class Error<T>(val message: T) : UiState()
 }

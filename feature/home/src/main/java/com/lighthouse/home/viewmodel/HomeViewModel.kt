@@ -1,11 +1,10 @@
 package com.lighthouse.home.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lighthouse.common_ui.base.BaseViewModel
 import com.lighthouse.common_ui.util.UiState
-import com.lighthouse.domain.usecase.GetQuestionContentUseCase
-import com.lighthouse.domain.usecase.GetQuestionListUseCase
+import com.lighthouse.domain.repository.QuestionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,15 +15,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val listUseCase: GetQuestionListUseCase,
-    private val contentUseCase: GetQuestionContentUseCase,
-) : ViewModel() {
+    private val repository: QuestionRepository
+) : BaseViewModel() {
     private val _result = MutableStateFlow<UiState>(UiState.Loading)
     val result: StateFlow<UiState> = _result.asStateFlow()
 
     fun getQuestionList(pageSize: Int?) {
         viewModelScope.launch {
-            listUseCase.invoke(pageSize)
+            repository.getQuestionList(pageSize)
                 .catch {
                     Log.e("TESTING", it.stackTraceToString())
                 }
@@ -43,7 +41,7 @@ class HomeViewModel @Inject constructor(
 
     fun getQuestionContent(questionId: String?) {
         viewModelScope.launch {
-            contentUseCase.invoke(questionId)
+            repository.getQuestionContent(questionId)
                 .catch {
                     _result.emit(UiState.Error(it.message ?: "Error"))
                 }
@@ -57,6 +55,18 @@ class HomeViewModel @Inject constructor(
                         }
                     )
 
+                }
+        }
+    }
+
+    fun getTest() {
+        viewModelScope.launch {
+            repository.getTest()
+                .catch {
+                    _result.value = handleException(it)
+                }
+                .collect { content ->
+                    _result.emit(UiState.Success(content))
                 }
         }
     }

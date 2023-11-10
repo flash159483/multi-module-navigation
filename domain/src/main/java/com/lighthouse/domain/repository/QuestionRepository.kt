@@ -9,4 +9,6 @@ interface QuestionRepository {
     fun getQuestionContent(questionId: String?): Flow<Result<QuestionContentVO>>
 
     suspend fun fetchRemoteConfig(): Boolean
+
+    fun getTest(): Flow<String>
 }

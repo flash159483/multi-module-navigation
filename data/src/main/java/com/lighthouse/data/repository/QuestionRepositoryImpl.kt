@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.lighthouse.data.remote.RemoteConfigDataSource
 import com.lighthouse.data.remote.datasource.QuestionDataSource
+import com.lighthouse.data.remote.datasource.TestDataSource
 import com.lighthouse.domain.repository.QuestionRepository
 import com.lighthouse.domain.vo.QuestionContentVO
 import com.lighthouse.domain.vo.QuestionListVO
@@ -14,7 +15,8 @@ import javax.inject.Inject
 class QuestionRepositoryImpl @Inject constructor(
     private val dataSource: QuestionDataSource,
     private val remoteConfigDataSource: RemoteConfigDataSource,
-    private val remoteConfig: FirebaseRemoteConfig
+    private val remoteConfig: FirebaseRemoteConfig,
+    private val testDataSource: TestDataSource
 ) : QuestionRepository {
     override fun getQuestionList(pageSize: Int?): Flow<Result<QuestionListVO>> = flow {
         val response =
@@ -42,4 +44,6 @@ class QuestionRepositoryImpl @Inject constructor(
     override suspend fun fetchRemoteConfig(): Boolean {
         return remoteConfigDataSource.fetchRemoteConfig()
     }
+
+    override fun getTest(): Flow<String> = testDataSource.getTest()
 }

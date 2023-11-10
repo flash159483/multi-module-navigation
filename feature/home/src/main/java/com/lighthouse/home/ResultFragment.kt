@@ -5,7 +5,6 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -68,8 +67,7 @@ class ResultFragment : Fragment() {
                 binding.tvBody.text = Html.fromHtml(response.body, Html.FROM_HTML_MODE_LEGACY)
             }
 
-            is UiState.Error -> {
-                Toast.makeText(context, uiState.message, Toast.LENGTH_SHORT).show()
+            is UiState.Error<*> -> {
             }
         }
     }
