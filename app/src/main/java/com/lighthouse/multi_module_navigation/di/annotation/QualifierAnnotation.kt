@@ -9,3 +9,11 @@ annotation class Main
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class Test
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class DefaultPreference
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class EncryptedPreference

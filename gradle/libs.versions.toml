@@ -59,6 +59,8 @@ admob = "22.4.0"
 splash = "1.1.0-alpha02"
 google-services = "4.3.15"
 
+shared-preference-security = "1.1.0-alpha06"
+
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "gradleplugin" }
@@ -108,6 +110,8 @@ swipe-refresh = { module = "androidx.swiperefreshlayout:swiperefreshlayout", ver
 splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
 google-admob = { module = "com.google.android.gms:play-services-ads", version.ref = "admob" }
 google-services = { module = "com.google.gms:google-services", version.ref = "google-services" }
+
+shared-preference-security = { module = "androidx.security:security-crypto-ktx", version.ref = "shared-preference-security" }
 
 [bundles]
 

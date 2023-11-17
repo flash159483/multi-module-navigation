@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.gson)
+    implementation(libs.shared.preference.security)
 
     implementation("com.google.firebase:firebase-config-ktx:21.5.0")
     implementation("com.google.firebase:firebase-analytics-ktx:21.5.0")

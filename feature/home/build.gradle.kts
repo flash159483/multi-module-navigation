@@ -35,4 +35,5 @@ dependencies {
     implementation(libs.swipe.refresh)
     implementation(libs.hilt)
     kapt(libs.hilt.kapt)
+    implementation(libs.gson)
 }

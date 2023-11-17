@@ -70,4 +70,10 @@ class HomeViewModel @Inject constructor(
                 }
         }
     }
+
+    fun <T> save(key: String, value: T, isEncrypted: Boolean) =
+        repository.save(key, value, isEncrypted)
+
+    fun <T> getValue(key: String, defaultValue: T, isEncrypted: Boolean): T =
+        repository.getValue(key, defaultValue, isEncrypted)
 }

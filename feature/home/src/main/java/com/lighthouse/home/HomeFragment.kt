@@ -36,6 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
                 }
             }
         }
+        checkLocal()
         initSwipe()
     }
 
@@ -91,5 +92,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
                 questionId
             )
         )
+    }
+
+    private fun checkLocal() {
+        viewModel.save("test1", "test", false)
+        viewModel.save("test2", true, true)
+        viewModel.save("test3", 12313, true)
+        viewModel.save("test4", listOf(1, 2, 3, 4), false)
     }
 }

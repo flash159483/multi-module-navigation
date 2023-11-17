@@ -1,9 +1,12 @@
 package com.lighthouse.multi_module_navigation.di
 
+import android.content.SharedPreferences
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.lighthouse.data.api.StackOverFlowAPI
 import com.lighthouse.data.api.TestAPI
+import com.lighthouse.data.local.LocalPreferenceDataSource
+import com.lighthouse.data.local.LocalPreferenceDataSourceImpl
 import com.lighthouse.data.remote.RemoteConfigDataSource
 import com.lighthouse.data.remote.datasource.QuestionDataSource
 import com.lighthouse.data.remote.datasource.TestDataSource
@@ -12,6 +15,8 @@ import com.lighthouse.data.remote.datasourceimpl.TestDataSourceImpl
 import com.lighthouse.data.repository.QuestionRepositoryImpl
 import com.lighthouse.domain.repository.QuestionRepository
 import com.lighthouse.multi_module_navigation.R
+import com.lighthouse.multi_module_navigation.di.annotation.DefaultPreference
+import com.lighthouse.multi_module_navigation.di.annotation.EncryptedPreference
 import com.lighthouse.multi_module_navigation.di.annotation.Main
 import com.lighthouse.multi_module_navigation.di.annotation.Test
 import dagger.Module
@@ -41,12 +46,14 @@ object DataModule {
         dataSource: QuestionDataSource,
         remoteConfigDataSource: RemoteConfigDataSource,
         remoteConfig: FirebaseRemoteConfig,
-        testDataSource: TestDataSource
+        testDataSource: TestDataSource,
+        local: LocalPreferenceDataSource
     ): QuestionRepository {
         return QuestionRepositoryImpl(
             dataSource,
             remoteConfigDataSource,
             remoteConfig,
+            local,
             testDataSource
         )
     }
@@ -69,5 +76,14 @@ object DataModule {
     @Singleton
     fun provideRemoteDataSource(remoteConfig: FirebaseRemoteConfig): RemoteConfigDataSource {
         return RemoteConfigDataSource(remoteConfig)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        @DefaultPreference sharedPreferences: SharedPreferences,
+        @EncryptedPreference encryptedSharedPreferences: SharedPreferences
+    ): LocalPreferenceDataSource {
+        return LocalPreferenceDataSourceImpl(sharedPreferences, encryptedSharedPreferences)
     }
 }
